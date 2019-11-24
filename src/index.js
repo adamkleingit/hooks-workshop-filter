@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import ReactDOM from "react-dom";
 
 import "./styles.css";
@@ -8,14 +8,8 @@ import { arr, getFilteredData } from "./utils";
 function App() {
   const [data] = useState(arr);
   const [filter, setFilter] = useState("");
-  const [filteredData, setFilteredData] = useState(() =>
-    getFilteredData(filter, data)
-  );
-
-  useEffect(
-    function syncFilteredData() {
-      setFilteredData(getFilteredData(filter, data));
-    },
+  const filteredData = useMemo(
+    () => getFilteredData(filter, data),
     [filter, data]
   );
 
