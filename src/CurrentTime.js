@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export function CurrentTime({ offset }) {
   const [currentTime, setCurrentTime] = useState(() => new Date());
 
-  useEffect(() => {
+  useEffect(function startInterval() {
     const interval = setInterval(() => setCurrentTime(new Date()), 200);
 
     return () => clearInterval(interval);
